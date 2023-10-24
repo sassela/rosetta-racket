@@ -1,18 +1,9 @@
 #lang racket
 (require control)
 (require text-block/text)
-
-(define (is-palindrome n)
-  (define s (number->string n))
-  (string=? s (string-reverse s)))
-
-(define (perfect-square? n)
-  (if (rational? (sqrt n))
-      (= n (expt (floor (sqrt n)) 2))
-      false))
-
-(define (reverse-number n)
-    (string->number (string-reverse (number->string n))))
+(require "palindrome.rkt")
+(require "perfect-square.rkt")
+(require "reverse-number.rkt")
 
 (define (find-rare-numbers count)
   (define rare-numbers '())
@@ -34,4 +25,4 @@
   (reverse rare-numbers))
 
 (displayln "The first 5 rare numbers are:")
-(for-each (λ (x) (display x) (display "\n")) (find-rare-numbers 2))
+(for-each (λ (x) (display x) (display " ")) (find-rare-numbers 5))
