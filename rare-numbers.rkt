@@ -3,8 +3,18 @@
 (require text-block/text)
 
 (define (is-palindrome n)
-  (define s (number->string n))
-  (string=? s (string-reverse s)))
+  (define (digit-list n)
+    (if (zero? n)
+        '()
+        (cons (remainder n 10) (digit-list (quotient n 10)))))
+  
+  (define (reverse-list lst)
+    (if (null? lst)
+        '()
+        (append (reverse-list (cdr lst)) (list (car lst)))))
+  
+  (define digits (digit-list n))
+  (equal? digits (reverse-list digits)))
 
 (define (perfect-square? n)
   (if (rational? (sqrt n))
