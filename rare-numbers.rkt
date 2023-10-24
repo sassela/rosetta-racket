@@ -25,13 +25,16 @@
                 (diff (- n r)))
            (and (perfect-square? sum)
                 (perfect-square? diff)))))
+
+  (define start-time (current-inexact-milliseconds))
   
   (while (< (length rare-numbers) count)
     (cond [(is-rare? i)
+        (displayln (format "Number: ~a | Elapsed time: ~a ms" i (round (- (current-inexact-milliseconds) start-time))))
         (set! rare-numbers (cons i rare-numbers))])
     (set! i (+ i 1)))
   
   (reverse rare-numbers))
 
 (displayln "The first 5 rare numbers are:")
-(for-each (λ (x) (display x) (display "\n")) (find-rare-numbers 2))
+(for-each (λ (x) (display x) (display "\n")) (find-rare-numbers 5))
